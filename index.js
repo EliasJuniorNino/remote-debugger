@@ -34,6 +34,16 @@ app.use('/', (req, res, next) => {
 		try {
 			for(const socket of sockets) {
 				socket.emit('request', {
+					date: `${Intl.DateTimeFormat('pt-br', {
+						year: 'numeric', 
+						month: 'numeric', 
+						day: 'numeric',
+						hour: 'numeric', 
+						minute: 'numeric', 
+						second: 'numeric',
+					hour12: false,
+					}).format(new Date)}`,
+					path: req.path,
 					body: req.body
 				})
 			}
