@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  adonis-api:
+    restart: always
+    container_name: "debug-api"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3333:3333"
