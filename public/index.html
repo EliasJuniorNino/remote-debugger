@@ -5,18 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEBUGGER</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
     <script src="socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script>
-        $(function () {
-            var socket = io();
-            socket.on('request', console.log)
-        });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body>
-    Todas mensagens aparacerão no console
+    <div id="msgContainer">
+
+    <script>
+        var mensagens = []
+        $(function () {
+            var socket = io();
+            socket.on('request', (data) => {
+                console.log(data);
+                mensagens.push(data);
+                let formattedString = '';
+                for(let i = 0; i < mensagens.length; i++) {
+                    formattedString += `
+                    <div>${data.date}</div>
+                    <div>${data.path}</div>
+                    <div>${JSON.stringify(data.body)}</div>
+                `
+                }
+                msgContainer.innerHTML = formattedString;
+            })
+        });
+    </script>
 </body>
 
 </html>
