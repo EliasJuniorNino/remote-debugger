@@ -7,34 +7,19 @@
     <title>DEBUGGER</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="index.css">
     
-    <script src="socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="libs/socket.io.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 </head>
 
 <body>
-    <div id="msgContainer">
-
-    <script>
-        var mensagens = []
-        $(function () {
-            var socket = io();
-            socket.on('request', (data) => {
-                console.log(data);
-                mensagens.push(data);
-                let formattedString = '';
-                for(let i = 0; i < mensagens.length; i++) {
-                    formattedString += `
-                    <div>${data.date}</div>
-                    <div>${data.path}</div>
-                    <div>${JSON.stringify(data.body)}</div>
-                `
-                }
-                msgContainer.innerHTML = formattedString;
-            })
-        });
-    </script>
+    <div id="root"></div>
+    <script type="text/babel" src="index.js"></script>
 </body>
 
 </html>
